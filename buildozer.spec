@@ -13,6 +13,7 @@ icon.filename = %(source.dir)s/assets/icon.png
 android.permissions = INTERNET,ACCESS_FINE_LOCATION,ACCESS_COARSE_LOCATION,CAMERA
 android.minapi = 24
 android.api = 35
+android.accept_sdk_license = True
 android.archs = arm64-v8a
 android.debug_artifact = apk
 android.allow_backup = False
