@@ -1,0 +1,48 @@
+
+name: Compilar APK ViajeAmigos Pro
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  android-apk:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 120
+
+    steps:
+      - name: Descargar codigo
+        uses: actions/checkout@v4
+
+      - name: Preparar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Preparar Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Instalar herramientas
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y git zip unzip autoconf automake libtool pkg-config \
+            zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake \
+            libffi-dev libssl-dev
+          python -m pip install --upgrade pip setuptools
+          python -m pip install buildozer 'cython==0.29.34'
+
+      - name: Compilar APK
+        run: buildozer -v android debug
+
+      - name: Publicar APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: ViajeAmigosProLocal-APK
+          path: bin/*.apk
+          if-no-files-found: error
+          retention-days: 30
