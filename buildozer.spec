@@ -6,7 +6,7 @@ source.dir = .
 source.include_exts = py,kv,png,jpg,jpeg,atlas,txt,json
 source.exclude_dirs = tests,.github,.venv,venv,__pycache__,bin,.buildozer
 version = 1.0.0
-requirements = python3,kivy==2.3.1,plyer,pyjnius,kivy_garden.mapview,requests,certifi
+requirements = python3,kivy==2.3.1,plyer,pyjnius,kivy_garden.mapview,requests,certifi,charset-normalizer==3.4.2
 orientation = portrait
 fullscreen = 0
 icon.filename = %(source.dir)s/assets/icon.png
